@@ -1,0 +1,26 @@
+<!-- mi_app/templates/mi_app/pokemon_template.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Datos del Pokémon</title>
+</head>
+<body>
+    <h1>Información del Pokémon</h1>
+
+    {% if pokemon_data %}
+        <h2>{{ pokemon_data.name|title }}</h2>
+        <img src="{{ pokemon_data.sprites.front_default }}" alt="{{ pokemon_data.name }}">
+        <p><strong>Id:</strong> {{ pokemon_data.id }}</p>
+        <p><strong>Altura:</strong> {{ pokemon_data.height }}</p>
+        <p><strong>Peso:</strong> {{ pokemon_data.weight }}</p>
+        <p><strong>Tipos:</strong> 
+            {% for type in pokemon_data.types %}
+                {{ type.type.name }}{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+        </p>
+    {% else %}
+        <p>No se encontró el Pokémon solicitado.</p>
+    {% endif %}
+</body>
+</html>
